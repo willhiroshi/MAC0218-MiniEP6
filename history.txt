@@ -1,0 +1,13 @@
+# os comandos foram realizados dentro da pasta do repositório
+# versão da tarefa 1 sem volumes
+docker image build -t custom-caddy:2.5.1-alpine .
+docker container run --name my-caddy-server --publish 8080:80 --detach custom-caddy:2.5.1-alpine
+
+# para começar a tarefa 2
+docker container stop my-caddy-server
+docker container rm my-caddy-server
+docker image rm custom-caddy:2.5.1-alpine
+
+# versão final com volumes
+docker image build -t custom-caddy:2.5.1-alpine .
+docker container run --name my-caddy-server --publish 8080:80 --volume ${PWD}/pages:/usr/src/pages --detach custom-caddy:2.5.1-alpine
